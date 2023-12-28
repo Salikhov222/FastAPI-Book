@@ -1,11 +1,21 @@
 # Pydantic - библиотека для проверки (валидации) данных с помощью аннотаций
+from typing import List, Optional
 
+from fastapi import Form
 from pydantic import BaseModel
-from typing import List
+
 
 class Todo(BaseModel):
-    id: int
+    id: Optional[int] = None   # Optinal[...] = Union[..., None]
     item: str
+
+    # Метод класса, cls - аргумент, который представляет сам класс
+    @classmethod
+    def as_form(
+        cls,
+        item: str = Form(...)
+    ):
+        return cls(item=item)
 
     # класс для указания примера заполнения данных в модели
     class Config:
