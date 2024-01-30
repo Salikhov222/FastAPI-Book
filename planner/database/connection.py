@@ -2,21 +2,23 @@ from typing import Optional, Any, List
 
 from beanie import init_beanie, PydanticObjectId
 from motor.motor_asyncio import AsyncIOMotorClient
-from pydantic import BaseSettings, BaseModel
+from pydantic import  BaseModel
+from pydantic_settings import BaseSettings, SettingsConfigDict
 from models.events import Event
 from models.users import User
 
+
 class Settings(BaseSettings):
     DATABASE_URL: Optional[str] = None
+    
+    model_config = SettingsConfigDict(env_file='.env')
 
     async def initialize_database(self):
         client = AsyncIOMotorClient(self.DATABASE_URL)
         await init_beanie(
-            database=client.get_default_database(), document_models=[Event, User]
+            database=client.get_default_database(), document_models=[Event, User],
         )
 
-    class Config:
-        env_file = ".env"
 
 class Database:
     def __init__(self, model):
@@ -57,5 +59,5 @@ class Database:
         await doc.delete()
         return True
     
-    
+
 
