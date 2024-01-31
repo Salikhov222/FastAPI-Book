@@ -9,7 +9,6 @@ from database.connection import Settings
 from routes.users import user_router
 from routes.events import event_router
 
-
 # Создание объекта Settings один раз при его первом вызове
 @lru_cache
 def get_settings():

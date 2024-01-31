@@ -9,6 +9,7 @@ from models.users import User
 
 
 class Settings(BaseSettings):
+    SECRET_KEY: Optional[str] = None
     DATABASE_URL: Optional[str] = None
     
     model_config = SettingsConfigDict(env_file='.env')

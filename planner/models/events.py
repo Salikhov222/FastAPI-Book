@@ -5,6 +5,7 @@ from beanie import Document
 
 
 class Event(Document):
+    creator: Optional[str] = None
     title: str
     image: str
     description: str
@@ -23,14 +24,14 @@ class Event(Document):
         }
     
     class Settings:
-        name = "events"
+        name = "events" # имя коллекции в DB
 
 class EventUpdate(BaseModel):
-    title: Optional[str]
-    image: Optional[str]
-    description: Optional[str]
-    tags: Optional[List[str]]
-    location: Optional[str]
+    title: Optional[str] = None
+    image: Optional[str] = None
+    description: Optional[str] = None
+    tags: Optional[List[str]] = None
+    location: Optional[str] = None
 
     class Config:
         json_schema_extra = {
