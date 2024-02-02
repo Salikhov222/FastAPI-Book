@@ -42,7 +42,7 @@ app.include_router(event_router, prefix="/event")
 
 
 @app.get("/")
-async def home():
+async def home():   
     return RedirectResponse(url="/event/")
 
 if __name__ == "__main__":

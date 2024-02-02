@@ -1,5 +1,7 @@
 from typing import Optional, Any, List
 
+import asyncio
+
 from beanie import init_beanie, PydanticObjectId
 from motor.motor_asyncio import AsyncIOMotorClient
 from pydantic import  BaseModel
@@ -16,6 +18,8 @@ class Settings(BaseSettings):
 
     async def initialize_database(self):
         client = AsyncIOMotorClient(self.DATABASE_URL)
+        # Рабочий цикл и цикл motor одинаковый
+        client.get_io_loop = asyncio.get_running_loop 
         await init_beanie(
             database=client.get_default_database(), document_models=[Event, User],
         )

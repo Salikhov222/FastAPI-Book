@@ -13,6 +13,6 @@ async def authenticate(token: str = Depends(ouath2_scheme)) -> str:
             detail="Sign in for access"
         )
     
-    decoded_token = verify_access_token(token)
+    decoded_token = await verify_access_token(token)
     return decoded_token["user"]
     
