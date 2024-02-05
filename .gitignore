@@ -1,9 +1,6 @@
-.env
+*.env
 todos/venv/
-todos/__pycache__/
-planner/__pycache__/
-planner/models/__pycache__/
-planner/routes/__pycache__/
-planner/database/__pycache__/
+*__pycache__/
 planner/store/
-planner/auth/__pycache__/
+planner/tests/testdb
+planner/tests/.pytest_cache
